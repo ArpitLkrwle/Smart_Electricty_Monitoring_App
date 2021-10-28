@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "467838308398",
+    "project_id": "bijlii",
+    "storage_bucket": "bijlii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467838308398:android:faa70b0d89809853cd0fbf",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467838308398-a8mtbj8b623dabbjlr244avbt81i5pfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.first_app",
+            "certificate_hash": "c039226b404db8f7fa76f2d956ac32308d79f907"
+          }
+        },
+        {
+          "client_id": "467838308398-chlhtn6fdiau2c32u35v42j326qbmbuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmyYS4GIySaZKm2JvXZVGt0pQKgyVlscs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467838308398-chlhtn6fdiau2c32u35v42j326qbmbuu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

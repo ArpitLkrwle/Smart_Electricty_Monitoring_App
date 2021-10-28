@@ -1,9 +1,11 @@
-import 'package:first_app/page/home_page.dart';
+import 'package:first_app/HomePage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({Key key}) : super(key: key);
+
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
@@ -12,8 +14,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
+    Navigator.pop(context);
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => home_page()),
+      MaterialPageRoute(builder: (_) => HomePage()),
     );
   }
 
@@ -56,8 +59,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           ),
         ),
       ),
-      globalFooter: 
-      SizedBox(
+      globalFooter: SizedBox(
         width: double.infinity,
         height: 60,
         child: ElevatedButton(
@@ -66,11 +68,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           onPressed: () => _onIntroEnd(context),
-           
-           style: ElevatedButton.styleFrom(
-             primary: Colors.tealAccent
-           
-           ), // to change the color
+
+          style: ElevatedButton.styleFrom(
+              primary: Colors.tealAccent), // to change the color
         ),
       ),
       pages: [
