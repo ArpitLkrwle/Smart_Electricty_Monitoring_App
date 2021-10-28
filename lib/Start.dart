@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:first_app/Login.dart';
-import 'package:first_app/SignUp.dart';
+import 'package:first_app/login.dart';
+import 'package:first_app/sign_up.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Start extends StatefulWidget {
@@ -33,7 +33,7 @@ class _StartState extends State<Start> {
         throw StateError('Missing Google Auth Token');
       }
     } else
-      throw StateError('Sign in Aborted');
+      {throw StateError('Sign in Aborted');}
   }
 
   navigateToLogin() async {
@@ -87,7 +87,7 @@ class _StartState extends State<Start> {
                 RaisedButton(
                     padding: EdgeInsets.only(left: 30, right: 30),
                     onPressed: navigateToLogin,
-                    child: Text(
+                    child: const Text(
                       'LOGIN',
                       style: TextStyle(
                         fontSize: 20,
@@ -103,7 +103,7 @@ class _StartState extends State<Start> {
                 RaisedButton(
                     padding: EdgeInsets.only(left: 30, right: 30),
                     onPressed: navigateToRegister,
-                    child: Text(
+                    child: const Text(
                       'REGISTER',
                       style: TextStyle(
                         fontSize: 20,

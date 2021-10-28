@@ -1,4 +1,4 @@
-import 'package:first_app/HomePage.dart';
+import 'package:first_app/homepage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -22,7 +22,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   Widget _buildFullscrenImage() {
     return Image.asset(
-      'assets/fullscreen.jpg',
+      'assets/img4.jpg',
       fit: BoxFit.cover,
       height: double.infinity,
       width: double.infinity,
@@ -50,12 +50,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: Colors.white,
-      globalHeader: Align(
+      globalHeader: const Align(
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
+            padding: EdgeInsets.only(top: 16, right: 16),
+           // child: _buildImage('flutter.png', 100),
           ),
         ),
       ),
@@ -75,30 +75,30 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
       pages: [
         PageViewModel(
-          title: "Fractional shares",
+          title: "Bill",
           body:
-              "Instead of having to buy an entire share, invest any amount you want.",
+              "Know Your Bill",
           image: _buildImage('img1.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "Usage",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Have a track upon your usage",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Kids and teens",
+          title: "Costing of ELectrcity",
           body:
-              "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+              "Know the electricity Cost of your Device",
           image: _buildImage('img3.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Full Screen Page",
+          title: "Carbon foot print",
           body:
-              "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
+              "You can also Track your Carbon Footprint",
           image: _buildFullscrenImage(),
           decoration: pageDecoration.copyWith(
             contentMargin: const EdgeInsets.symmetric(horizontal: 16),
@@ -107,46 +107,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             imageFlex: 3,
           ),
         ),
-        PageViewModel(
-          title: "Another title page",
-          body: "Another beautiful body text for this example onboarding",
-          image: _buildImage('img2.jpg'),
-          footer: ElevatedButton(
-            onPressed: () {
-              introKey.currentState?.animateScroll(0);
-            },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ),
-          decoration: pageDecoration,
-        ),
-        PageViewModel(
-          title: "Title of last page - reversed",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
-          ),
-          decoration: pageDecoration.copyWith(
-            bodyFlex: 2,
-            imageFlex: 4,
-            bodyAlignment: Alignment.bottomCenter,
-            imageAlignment: Alignment.topCenter,
-          ),
-          image: _buildImage('img1.jpg'),
-          reverse: true,
-        ),
+        // PageViewModel(
+        //   title: "",
+        //   body: "Another beautiful body text for this example onboarding",
+        //   image: _buildImage('img2.jpg'),
+        //   footer: ElevatedButton(
+        //     onPressed: () {
+        //       introKey.currentState?.animateScroll(0);
+        //     },
+        //     child: const Text(
+        //       'FooButton',
+        //       style: TextStyle(color: Colors.white),
+        //     ),
+        //     style: ElevatedButton.styleFrom(
+        //       primary: Colors.lightBlue,
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(8.0),
+        //       ),
+        //     ),
+        //   ),
+        //   decoration: pageDecoration,
+        // ),
+        
       ],
       onDone: () => _onIntroEnd(context),
       //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
