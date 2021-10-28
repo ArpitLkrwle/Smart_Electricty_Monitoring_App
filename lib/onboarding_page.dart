@@ -1,4 +1,4 @@
-import 'package:first_app/HomePage.dart';
+import 'package:first_app/homepage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -50,11 +50,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: Colors.white,
-      globalHeader: Align(
+      globalHeader: const Align(
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
+            padding: EdgeInsets.only(top: 16, right: 16),
            // child: _buildImage('flutter.png', 100),
           ),
         ),

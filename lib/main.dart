@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:first_app/Login.dart';
-import 'package:first_app/SignUp.dart';
-import 'package:first_app/Start.dart';
+import 'package:first_app/login.dart';
+import 'package:first_app/sign_up.dart';
+import 'package:first_app/start.dart';
 //import 'package:first_app/HomePage.dart';
 import 'package:first_app/onboarding_page.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.blue),
         home: OnBoardingPage(),
         routes: <String, WidgetBuilder>{
-          "Login": (BuildContext context) => Login(),
+          "Login": (BuildContext context) => login(),
           "SignUp": (BuildContext context) => SignUp(),
           "start": (BuildContext context) => Start(),
         });

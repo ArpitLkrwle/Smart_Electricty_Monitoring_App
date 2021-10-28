@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/SignUp.dart';
+import 'package:first_app/sign_up.dart';
 
-class Login extends StatefulWidget {
+class login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<login> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
