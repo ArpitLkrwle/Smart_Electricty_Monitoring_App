@@ -50,6 +50,7 @@ dependencies:
   sqflite: ^2.0.0+4
   uuid: ^3.0.4
   bottom_navy_bar: ^5.6.0
+  fluttertoast: ^8.0.8
 
 
 dev_dependencies:
@@ -81,6 +82,11 @@ flutter:
       - images/start.jpg
       - images/login.jpg
       - images/welcome.jpg
+      - assets/img1.jpg
+      - assets/img2.jpg
+      - assets/img3.jpg
+      - assets/img4.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // import 'package:authentification/Start.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -57,6 +59,9 @@ class _HomePageState extends State<HomePage> {
     _pageController.dispose();
     super.dispose();
   }
+ 
+
+  int units, wattage, hours;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       //         ? CircularProgressIndicator()
       //         :
 
-      appBar: AppBar(title: Text("Bottom Nav Bar")),
+      appBar: AppBar(title: Text("Smart Bijli")),
       body: Container(
         child: !isloggedin
             ? Center(child: CircularProgressIndicator())
@@ -106,12 +111,87 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white,
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold)),
-                            color: Colors.orange,
+                            color: Colors.purple[300],
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(10.0),
                             ))),
                     Container(
-                      color: Colors.green,
+                      color: Colors.green[100],
+                      child: Column(children: <Widget>[
+                        SizedBox(height: 50,),
+                         Container(
+                      child: TextFormField(
+                          validator: (input) {
+                            if (input.isEmpty) return 'Enter Readings';
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Units',
+                            prefixIcon: Icon(Icons.bolt)
+                          ),
+                          onSaved: (input) => units = int.parse(input)
+                    )
+                      
+                      ),
+                      SizedBox(height: 50,),
+                    Container(
+                      child: TextFormField(
+                          validator: (input) {
+                            if (input.isEmpty) return 'Enter Wattage of your device';
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Wattage',
+                            prefixIcon: Icon(Icons.device_hub),
+                          ),
+                          onSaved: (input) => wattage = int.parse(input)
+                    )
+                      
+                      ),
+                      SizedBox(height: 50,),
+                      Container(
+                      child: TextFormField(
+                          validator: (input) {
+                            if (input.isEmpty) return 'Enter Hours of Usage';
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Hours',
+                            prefixIcon: Icon(Icons.lock_clock)
+                          ),
+                          onSaved: (input) => hours = int.parse(input)
+                    )
+
+                    
+                      
+                      ),
+                      SizedBox(height: 10,),
+                      RaisedButton(
+                      padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                      onPressed: (){
+                         Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ToastNoContext(),
+              ));
+            },
+            child: Text("Flutter Toast No Context"),
+          ),
+                          
+    );
+
+
+                      },
+                      child: Text('Submit',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold)),
+                      color: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    )
+
+
+
+                      ],
+                    ),
                     ),
                     Container(
                       color: Colors.blue,
@@ -121,32 +201,21 @@ class _HomePageState extends State<HomePage> {
               ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        backgroundColor: Colors.yellow[600],
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
           _pageController.jumpToPage(index);
         },
         items: <BottomNavyBarItem>[
-          BottomNavyBarItem(title: Text('Item One'), icon: Icon(Icons.home)),
-          BottomNavyBarItem(title: Text('Item Two'), icon: Icon(Icons.apps)),
+          BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
           BottomNavyBarItem(
-              title: Text('Item Three'), icon: Icon(Icons.chat_bubble)),
+              title: Text('Sign out'), icon: Icon(Icons.logout_sharp)),
+          BottomNavyBarItem(title: Text('Stats'), icon: Icon(Icons.book)),
           BottomNavyBarItem(
-              title: Text('Item Four'), icon: Icon(Icons.settings)),
+              title: Text('Settings'), icon: Icon(Icons.settings)),
         ],
       ),
     );
-
-    //     //  Column(
-    //     //     children: <Widget>[
-
-    //           //
-
-    //           )
-    //         ],
-    //       ),
-    //   )
-    //   );
-    // }
   }
 }
