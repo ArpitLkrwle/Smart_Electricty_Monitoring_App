@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names, file_names
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:authentification/Start.dart';
@@ -5,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'navy_pages/home.dart';
 import 'navy_pages/calc_page.dart';
+import 'navy_pages/grid_of_stats.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   User user;
   bool isloggedin = false;
   int _currentIndex = 0;
-  PageController _pageController;
+  PageController _page_controller;
 
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
@@ -33,8 +36,8 @@ class _HomePageState extends State<HomePage> {
 
     if (firebaseUser != null) {
       setState(() {
-        this.user = firebaseUser;
-        this.isloggedin = true;
+        user = firebaseUser;
+        isloggedin = true;
       });
     }
   }
@@ -48,14 +51,14 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    this.checkAuthentification();
-    this.getUser();
-    _pageController = PageController();
+    checkAuthentification();
+    getUser();
+    _page_controller = PageController();
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _page_controller.dispose();
     super.dispose();
   }
 
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           selectedIndex: _currentIndex,
           onItemSelected: (index) {
             setState(() => _currentIndex = index);
-            _pageController.jumpToPage(index);
+            _page_controller.jumpToPage(index);
           },
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
@@ -86,18 +89,18 @@ class _HomePageState extends State<HomePage> {
                 ? Center(child: CircularProgressIndicator())
                 : SizedBox.expand(
                     child: PageView(
-                      controller: _pageController,
+                      controller: _page_controller,
                       onPageChanged: (index) {
                         setState(() => _currentIndex = index);
                       },
                       children: <Widget>[
                         home(user: user),
-
+                        // ignore: avoid_unnecessary_containers
                         Container(
                             child: RaisedButton(
                                 padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
                                 onPressed: signOut,
-                                child: Text('Signout',
+                                child: Text('Click her to get yourself Out',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20.0,
@@ -105,23 +108,11 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.purple[300],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                )
-                                )
-                                ),
-
+                                ))),
                         calc_page(),
-
-                        Container(
-                          color: Colors.blue,
-                        ),
+                        grid_of_stats(),
                       ],
                     ),
-                  )
-                  )
-                  );
+                  )));
   }
 }
-
-
-
-
