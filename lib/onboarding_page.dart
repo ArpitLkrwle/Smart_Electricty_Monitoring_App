@@ -55,7 +55,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(top: 16, right: 16),
-           // child: _buildImage('flutter.png', 100),
+            // child: _buildImage('flutter.png', 100),
           ),
         ),
       ),
@@ -65,7 +65,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: ElevatedButton(
           child: const Text(
             'Lets go right away!',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           onPressed: () => _onIntroEnd(context),
 
@@ -76,29 +76,26 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       pages: [
         PageViewModel(
           title: "Bill",
-          body:
-              "Know Your Bill",
+          body: "Know Your Bill",
           image: _buildImage('img1.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Usage",
-          body:
-              "Have a track upon your usage",
+          body: "Have a track upon your usage",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Costing of ELectrcity",
-          body:
-              "Know the electricity Cost of your Device",
+          body: "Know the electricity Cost of your Device",
           image: _buildImage('img3.jpg'),
           decoration: pageDecoration,
         ),
+        
         PageViewModel(
           title: "Carbon foot print",
-          body:
-              "You can also Track your Carbon Footprint",
+          body: "You can also Track your Carbon Footprint",
           image: _buildFullscrenImage(),
           decoration: pageDecoration.copyWith(
             contentMargin: const EdgeInsets.symmetric(horizontal: 16),
@@ -128,7 +125,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         //   ),
         //   decoration: pageDecoration,
         // ),
-        
       ],
       onDone: () => _onIntroEnd(context),
       //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
@@ -136,7 +132,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       skipFlex: 0,
       nextFlex: 0,
       //rtl: true, // Display as right-to-left
-      skip: const Text('Skip'),
+      skip: const Text('Jaldi leke chalo'),
       next: const Icon(Icons.arrow_forward),
       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,

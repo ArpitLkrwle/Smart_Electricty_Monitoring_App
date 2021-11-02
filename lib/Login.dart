@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_unnecessary_containers, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/sign_up.dart';
+
 
 class login extends StatefulWidget {
   @override
