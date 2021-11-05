@@ -1,13 +1,14 @@
 // ignore_for_file: deprecated_member_use, non_constant_identifier_names, file_names
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_app/navy_pages/logs.dart';
 import 'package:flutter/material.dart';
 // import 'package:authentification/Start.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'navy_pages/home.dart';
 import 'navy_pages/calc_page.dart';
-import 'navy_pages/grid_of_stats.dart';
+import 'navy_pages/about.dart';
+import 'values.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -42,12 +43,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  signOut() async {
-    _auth.signOut();
-    final googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -62,13 +57,27 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  int units, wattage, hours;
+  DateTime selectedDate = Values.selectedDatee;
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Smart Bijli")),
         bottomNavigationBar: BottomNavyBar(
+          curve: Curves.easeIn,
           backgroundColor: Colors.yellow[600],
           selectedIndex: _currentIndex,
           onItemSelected: (index) {
@@ -76,13 +85,34 @@ class _HomePageState extends State<HomePage> {
             _page_controller.jumpToPage(index);
           },
           items: <BottomNavyBarItem>[
-            BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
             BottomNavyBarItem(
-                title: Text('Sign out'), icon: Icon(Icons.logout_sharp)),
-            BottomNavyBarItem(title: Text('Stats'), icon: Icon(Icons.book)),
+                title: Text('Home'),
+                icon: Icon(Icons.home),
+                inactiveColor: Colors.white,
+                activeColor: Colors.blueGrey[900]),
             BottomNavyBarItem(
-                title: Text('Settings'), icon: Icon(Icons.settings)),
+                title: Text('Sign out'),
+                icon: Icon(Icons.logout_sharp),
+                inactiveColor: Colors.white,
+                activeColor: Colors.blueGrey[900]),
+            BottomNavyBarItem(
+                title: Text('Stats'),
+                icon: Icon(Icons.book),
+                inactiveColor: Colors.white,
+                activeColor: Colors.blueGrey[900]),
+            BottomNavyBarItem(
+                title: Text('Settings'),
+                icon: Icon(Icons.settings),
+                inactiveColor: Colors.white,
+                activeColor: Colors.blueGrey[900]),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            add_reading(context);
+          },
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.green[300],
         ),
         body: Container(
             child: !isloggedin
@@ -96,23 +126,63 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         home(user: user),
                         // ignore: avoid_unnecessary_containers
-                        Container(
-                            child: RaisedButton(
-                                padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                                onPressed: signOut,
-                                child: Text('Click her to get yourself Out',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold)),
-                                color: Colors.purple[300],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ))),
+                        Logs(),
                         calc_page(),
-                        grid_of_stats(),
+                        const About(),
                       ],
                     ),
                   )));
+  }
+
+
+  Future<dynamic> add_reading(BuildContext context) {
+    return showModalBottomSheet(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0))),
+              context: context,
+              builder: (BuildContext bc) {
+                return Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * .40,
+                    child: Column(children: <Widget>[
+                      Text("Add Your Readings",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter Your Readings',
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "${selectedDate.toLocal()}".split(' ')[0],
+                        style: TextStyle(
+                            fontSize: 55, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      RaisedButton(
+                        onPressed: () => _selectDate(context),
+                        child: Text(
+                          'Select date',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        color: Colors.greenAccent,
+                      ),
+                    ]),
+                  ),
+                );
+              });
   }
 }

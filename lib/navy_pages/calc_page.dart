@@ -1,5 +1,6 @@
 import 'package:first_app/navy_pages/grid_of_stats.dart';
 import 'package:flutter/material.dart';
+import 'package:first_app/values.dart';
 
 class calc_page extends StatefulWidget {
   calc_page({
@@ -10,16 +11,18 @@ class calc_page extends StatefulWidget {
   State<calc_page> createState() => _calc_pageState();
 }
 
-
-
 // ignore: camel_case_types
 class _calc_pageState extends State<calc_page> {
-  double hours1, wattage1, units1;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[100],
+      appBar: AppBar(
+            title: Text("Smart Bijli"),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.yellow[600]),
+            
+      backgroundColor: Colors.blueGrey[50],
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
@@ -34,7 +37,7 @@ class _calc_pageState extends State<calc_page> {
                           labelText: 'Units', prefixIcon: Icon(Icons.bolt)),
                       onSubmitted: (input) {
                         setState(() {
-                          units1 = double.parse(input);
+                          Values.units = double.parse(input);
                         });
                       })),
               SizedBox(
@@ -48,7 +51,7 @@ class _calc_pageState extends State<calc_page> {
                       ),
                       onSubmitted: (input) {
                         setState(() {
-                          wattage1 = double.parse(input);
+                          Values.wattage = double.parse(input);
                         });
                       })),
               SizedBox(
@@ -61,21 +64,25 @@ class _calc_pageState extends State<calc_page> {
                           prefixIcon: Icon(Icons.lock_clock)),
                       onSubmitted: (input) {
                         setState(() {
-                          hours1 = double.parse(input);
+                          Values.hours = double.parse(input);
                         });
                       })),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
 
               // new Text("\n $hours"),
               // new Text("\n $wattage"),
               // new Text("\n $units"),
               RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0)),
+                  elevation: 10,
                   child: Text("Submit"),
                   onPressed: () {
+
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => grid_of_stats(hours1:hours1,wattage1:wattage1,units1:units1)));
+                        builder: (context) => grid_of_stats()));
                   })
             ],
           ),
@@ -84,3 +91,5 @@ class _calc_pageState extends State<calc_page> {
     );
   }
 }
+
+

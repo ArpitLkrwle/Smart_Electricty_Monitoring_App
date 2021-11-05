@@ -12,21 +12,28 @@ class home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 20.0),
-        Image(
-          image: AssetImage("images/welcome.jpg"),
-          fit: BoxFit.contain,
-        ),
-        SizedBox(height: 70.0),
-        Text(
-          "Hello ${user.displayName} you are Logged in as ${user.email}",
-          style: TextStyle(
-              fontSize: 20.0, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+            title: Text("Smart Bijli"),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.yellow[600]),
+            
+      body: Column(
+        children: [
+          SizedBox(height: 20.0),
+          Image(
+            image: AssetImage("images/welcome.jpg"),
+            fit: BoxFit.contain,
+          ),
+          SizedBox(height: 70.0),
+          Text(
+            "Hello ${user.displayName} you are Logged in as ${user.email}",
+            style: TextStyle(
+                fontSize: 20.0, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }
