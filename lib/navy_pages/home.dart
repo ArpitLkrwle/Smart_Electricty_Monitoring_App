@@ -14,10 +14,15 @@ class home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            title: Text("Smart Bijli"),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.yellow[600]),
-            
+          title: Row(
+            children: [
+              Text("Smart Bijli"),
+              Spacer(),
+              Icon(Icons.lightbulb),
+            ],
+          ),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.yellow[600]),
       body: Column(
         children: [
           SizedBox(height: 20.0),
@@ -28,10 +33,10 @@ class home extends StatelessWidget {
           SizedBox(height: 70.0),
           Text(
             "Hello ${user.displayName} you are Logged in as ${user.email}",
-            style: TextStyle(
-                fontSize: 20.0, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
+
         ],
       ),
     );

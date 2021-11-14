@@ -106,6 +106,7 @@ class _SignUpState extends State<SignUp> {
                               prefixIcon: Icon(Icons.email)),
                           onSaved: (input) => _email = input),
                     ),
+                    
                     Container(
                       child: TextFormField(
                           validator: (input) {

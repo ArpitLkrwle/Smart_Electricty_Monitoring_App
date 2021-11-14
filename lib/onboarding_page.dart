@@ -92,7 +92,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           image: _buildImage('img3.jpg'),
           decoration: pageDecoration,
         ),
-        
+
         PageViewModel(
           title: "Carbon foot print",
           body: "You can also Track your Carbon Footprint",
@@ -132,7 +132,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       skipFlex: 0,
       nextFlex: 0,
       //rtl: true, // Display as right-to-left
-      skip: const Text('Jaldi leke chalo'),
+      skip: const Text('Skip ALL'),
       next: const Icon(Icons.arrow_forward),
       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,
