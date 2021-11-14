@@ -13,15 +13,13 @@ class calc_page extends StatefulWidget {
 
 // ignore: camel_case_types
 class _calc_pageState extends State<calc_page> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            title: Text("Smart Bijli"),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.yellow[600]),
-            
+          title: Text("Smart Bijli"),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.yellow[600]),
       backgroundColor: Colors.blueGrey[50],
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -34,7 +32,9 @@ class _calc_pageState extends State<calc_page> {
               Container(
                   child: TextField(
                       decoration: InputDecoration(
-                          labelText: 'Units', prefixIcon: Icon(Icons.bolt)),
+                        labelText: 'Units',
+                        prefixIcon: Icon(Icons.bolt_sharp),
+                      ),
                       onSubmitted: (input) {
                         setState(() {
                           Values.units = double.parse(input);
@@ -47,7 +47,7 @@ class _calc_pageState extends State<calc_page> {
                   child: TextField(
                       decoration: InputDecoration(
                         labelText: 'Wattage',
-                        prefixIcon: Icon(Icons.device_hub),
+                        prefixIcon: Icon(Icons.electrical_services),
                       ),
                       onSubmitted: (input) {
                         setState(() {
@@ -68,7 +68,7 @@ class _calc_pageState extends State<calc_page> {
                         });
                       })),
               SizedBox(
-                height: 20,
+                height: 50,
               ),
 
               // new Text("\n $hours"),
@@ -80,7 +80,6 @@ class _calc_pageState extends State<calc_page> {
                   elevation: 10,
                   child: Text("Submit"),
                   onPressed: () {
-
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => grid_of_stats()));
                   })
@@ -91,5 +90,3 @@ class _calc_pageState extends State<calc_page> {
     );
   }
 }
-
-

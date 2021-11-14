@@ -1,7 +1,7 @@
-
+import 'package:first_app/values.dart';
+import 'package:first_app/widget/logss.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Logs extends StatefulWidget {
   const Logs({
@@ -13,38 +13,43 @@ class Logs extends StatefulWidget {
 }
 
 class _LogsState extends State<Logs> {
-final FirebaseAuth _auth = FirebaseAuth.instance;
-
-signOut() async {
-    _auth.signOut();
-    final googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
-            title: Text("Smart Bijli"),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.yellow[600]),
-
-        body: Center(
-          child: RaisedButton(
-              padding:
-                  const EdgeInsets.fromLTRB(30, 10, 30, 10),
-              onPressed: signOut,
-              child: const Text(
-                  'Click her to get yourself Out',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold)),
-              color: Colors.purple[200],
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              )),
-        ));
+          title: Text("Smart Bijli"),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.yellow[600]),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.deepPurple,
+            Colors.pink,
+          ],
+        )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: GridView.count(
+            childAspectRatio: 3,
+            padding: const EdgeInsets.all(10),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 1,
+            children: <Widget>[
+              if (lst.isEmpty) ...{
+                Text(" No readings Received yet"),
+              } else
+                for (int i = 0; i < lst.length; i++) ...[
+                  logss(lst[i], dst[i]),
+                ],
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
