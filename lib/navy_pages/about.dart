@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -155,7 +157,7 @@ class _AboutState extends State<About> {
                 borderRadius: BorderRadius.circular(10.0),
               )),
           const Spacer(),
-          const Text(" Made at YCCE ⚙️"),
+          const Text(" Made with ❤️ at YCCE "),
           const SizedBox(
             height: 20,
           ),

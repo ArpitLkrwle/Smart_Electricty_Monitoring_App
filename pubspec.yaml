@@ -48,7 +48,6 @@ dependencies:
   intl: ^0.17.0
   path_provider: ^2.0.5
   shared_preferences: ^2.0.8
-  sqflite: ^2.0.0+4
   uuid: ^3.0.4
   bottom_navy_bar: ^5.6.0
   fluttertoast: ^8.0.8
@@ -56,6 +55,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.3.48
   get: ^4.3.8
   flutter_neumorphic: ^3.1.0
+  syncfusion_flutter_datepicker: ^19.3.55
   
 
 
