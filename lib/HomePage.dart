@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'navy_pages/home.dart';
 import 'navy_pages/calc_page.dart';
 import 'navy_pages/about.dart';
+import 'navy_pages/logs2.dart';
 import 'values.dart';
 import 'navy_pages/logs.dart';
 
@@ -111,6 +112,8 @@ class _HomePageState extends State<HomePage> {
     Values.units = double.parse(readings);
     lst.add(double.parse(readings));
     dst.add(selectedDate);
+    Navigator.pop(context);
+    setState(() {});
   }
 
   void _startAddNew(BuildContext context) {
@@ -185,7 +188,7 @@ class _HomePageState extends State<HomePage> {
   Widget add_reading(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
-        margin: EdgeInsets.symmetric(
+        margin:const EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 20,
         ),
@@ -208,7 +211,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                     labelText: 'Reading',
                     prefixIcon: Icon(Icons.bolt),
                   ),
@@ -233,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin:const EdgeInsets.only(
                     top: 10,
                     bottom: 30,
                   ),
@@ -243,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                         child: TextFormField(
                           readOnly: true,
                           controller: _dateController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Date',
                             prefixIcon: Icon(Icons.calendar_today),
                           ),
@@ -272,10 +275,10 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     Text("$selectedDate"),
-                    Spacer(),
+                    const Spacer(),
                     FlatButton(
                       onPressed: addReadings,
-                      child: Text(
+                      child:const Text(
                         " Add Readings ",
                         style: TextStyle(
                           color: Colors.white,
@@ -286,14 +289,14 @@ class _HomePageState extends State<HomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 10,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(" $readings"),

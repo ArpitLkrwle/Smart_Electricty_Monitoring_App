@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -19,7 +23,8 @@ double billing(double units) {
 
 Container logss(double unitss, DateTime dst) {
   double unitsss = unitss;
-  double billl = billing(unitsss);
+  double billl = roundDouble(billing(unitsss), 2);
+  
   String dt = DateFormat('yMMMMd').format(dst);
   return Container(
     padding: const EdgeInsets.all(8),
@@ -28,7 +33,7 @@ Container logss(double unitss, DateTime dst) {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(5, 5, 10, 1),
-          child: Text('$dt', style: TextStyle(fontSize: 17)),
+          child: Text(dt, style: TextStyle(fontSize: 17)),
         ),
         Divider(
           thickness: 0.25,
@@ -68,6 +73,11 @@ Container logss(double unitss, DateTime dst) {
     ),
     decoration: grid_decoration(),
   );
+}
+
+double roundDouble(double billing, int i) {
+  double mod = pow(10.0, i);
+  return ((billing * mod).round().toDouble() / mod);
 }
 
 BoxDecoration grid_decoration() {

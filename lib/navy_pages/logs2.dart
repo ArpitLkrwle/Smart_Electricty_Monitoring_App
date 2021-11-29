@@ -1,20 +1,20 @@
-// ignore_for_file: prefer_const_constructors
+//page for no data
 
 import 'package:first_app/values.dart';
 import 'package:first_app/widget/logs_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Logs extends StatefulWidget {
-  const Logs({
+class Logs2 extends StatefulWidget {
+  const Logs2({
     Key key,
   }) : super(key: key);
 
   @override
-  State<Logs> createState() => _LogsState();
+  State<Logs2> createState() => _LogsState2();
 }
 
-class _LogsState extends State<Logs> {
+class _LogsState2 extends State<Logs2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +27,12 @@ class _LogsState extends State<Logs> {
             gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.bottomCenter,
-          colors: const [
+          colors: [
             Colors.deepPurple,
             Colors.pink,
           ],
-        )),
+        )
+        ),
         child: Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: GridView.count(
@@ -41,12 +42,10 @@ class _LogsState extends State<Logs> {
             mainAxisSpacing: 10,
             crossAxisCount: 1,
             children: <Widget>[
-              if (lst.isEmpty) ...{
-                Text(" No readings Received yet"),
-              } else
-                for (int i = 0; i < lst.length; i++) ...[
-                  logss(lst[i], dst[i]),
-                ],
+              
+                
+                Center(child: Text(" No readings Received yet")),
+              
             ],
           ),
         ),

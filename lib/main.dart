@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:first_app/homepage.dart';
-import 'package:first_app/login.dart';
-import 'package:first_app/sign_up.dart';
-import 'package:first_app/start.dart';
+import 'package:first_app/login_pages/login.dart';
+import 'package:first_app/login_pages/sign_up.dart';
+import 'package:first_app/login_pages/start.dart';
 import 'package:first_app/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
