@@ -11,6 +11,8 @@ class grid_of_stats extends StatelessWidget {
   double monthh;
   double yearr;
 
+  grid_of_stats({Key key}) : super(key: key);
+
   billing() {
     double units = Values.units;
     if (units <= 100) {
@@ -147,10 +149,10 @@ class grid_of_stats extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 0.5,
                     ),
-                    LinearProgressIndicator(
+                    const LinearProgressIndicator(
                       value: 0.3,
                     ),
                     SizedBox(
