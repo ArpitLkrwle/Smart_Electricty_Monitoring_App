@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../values.dart';
 import 'color_extensions.dart';
 import 'package:first_app/navy_pages/home.dart';
+import 'package:collection/collection.dart';
 
 class BarChartSample1 extends StatefulWidget {
   const BarChartSample1({Key key}) : super(key: key);
@@ -22,7 +23,8 @@ class BarChartSample1State extends State<BarChartSample1> {
   int touchedIndex = -1;
 
   bool isPlaying = false;
-
+  var summ;
+  var maxx;
   List<double> _spendingsList = List.generate(7, (index) => 0);
 
   void _generateWeeklyReport() {
@@ -34,8 +36,10 @@ class BarChartSample1State extends State<BarChartSample1> {
       _spendingsList[(Values.SelectedDocs[i]['Day'])] =
           double.parse((Values.SelectedDocs[i]['Units']));
     }
+    //summ = _spendingsList.sum;
+    maxx = _spendingsList.reduce(max) + 5;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     _generateWeeklyReport();
@@ -114,7 +118,7 @@ class BarChartSample1State extends State<BarChartSample1> {
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: 100,
+            y: maxx,
             colors: [barBackgroundColor],
           ),
         ),
