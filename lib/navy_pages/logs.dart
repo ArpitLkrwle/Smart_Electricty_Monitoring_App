@@ -53,6 +53,7 @@ class _LogsState extends State<Logs> {
                 backgroundColor: Colors.yellow[600]),
             body: SingleChildScrollView(
               child: Container(
+                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.centerLeft,
