@@ -1,19 +1,14 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_app/widget/logs_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import '../values.dart';
 import 'color_extensions.dart';
+import 'package:first_app/navy_pages/home.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  final List<Color> availableColors = const [
-    Colors.purpleAccent,
-    Colors.yellow,
-    Colors.lightBlue,
-    Colors.orange,
-    Colors.pink,
-    Colors.redAccent,
-  ];
-
   const BarChartSample1({Key key}) : super(key: key);
 
   @override
@@ -28,8 +23,22 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   bool isPlaying = false;
 
+  List<double> _spendingsList = List.generate(7, (index) => 0);
+
+  void _generateWeeklyReport() {
+    if (_spendingsList.isNotEmpty) {
+      _spendingsList.clear();
+      _spendingsList = List.generate(7, (index) => 0);
+    }
+    for (int i = 0; i < Values.SelectedDocs.length; i++) {
+      _spendingsList[(Values.SelectedDocs[i]['Day'])] =
+          double.parse((Values.SelectedDocs[i]['Units']));
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
+    _generateWeeklyReport();
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
@@ -105,7 +114,7 @@ class BarChartSample1State extends State<BarChartSample1> {
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: 20,
+            y: 100,
             colors: [barBackgroundColor],
           ),
         ),
@@ -113,28 +122,37 @@ class BarChartSample1State extends State<BarChartSample1> {
       showingTooltipIndicators: showTooltips,
     );
   }
-// add a for loop here ! 
+
+// add a for loop here !
+  // List<double> s = [12.0, 32.4, 12.3, 32.2, 5.2, 7.2, 16.1];
+
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
+            return makeGroupData(0, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(1, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+            return makeGroupData(2, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+            return makeGroupData(3, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+            return makeGroupData(4, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+            return makeGroupData(5, _spendingsList[i],
+                isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(6, _spendingsList[i],
+                isTouched: i == touchedIndex);
           default:
             return throw Error();
         }
-      }
-      );
+      });
 
   BarChartData mainBarData() {
     return BarChartData(
@@ -193,7 +211,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 barTouchResponse == null ||
                 barTouchResponse.spot == null) {
               touchedIndex = -1;
-              return;
+              // return;
             }
             touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
           });
@@ -240,5 +258,4 @@ class BarChartSample1State extends State<BarChartSample1> {
       gridData: FlGridData(show: false),
     );
   }
-
 }

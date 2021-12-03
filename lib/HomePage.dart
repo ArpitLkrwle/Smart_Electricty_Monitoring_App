@@ -1,14 +1,15 @@
 // ignore_for_file: deprecated_member_use, non_constant_identifier_names, file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/navy_pages/logs.dart';
 import 'package:flutter/material.dart';
 // import 'package:authentification/Start.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:intl/intl.dart';
-import 'navy_pages/home.dart';
 import 'navy_pages/calc_page.dart';
 import 'navy_pages/about.dart';
+import 'navy_pages/home.dart';
 import 'navy_pages/logs2.dart';
 import 'values.dart';
 import 'navy_pages/logs.dart';
@@ -22,6 +23,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String userId;
   User user;
   bool isloggedin = false;
   int _currentIndex = 0;
@@ -47,6 +50,8 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         user = firebaseUser;
         isloggedin = true;
+        userId = firebaseUser.uid;
+        Values.userId = userId;
       });
     }
   }
@@ -65,23 +70,25 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  DateTime selectedDate = Values.selectedDatee;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && readings != null) {
-      setState(() async {
-        selectedDate = picked;
-        readings = readingController.text;
-        addReadings();
-      });
-    }
+  // CollectionReference Users = FirebaseFirestore.instance.collection("userId");
+  Future<void> addUser() {
+    // Call the user's CollectionReference to add a new user
+    return FirebaseFirestore.instance
+        .collection(userId)
+        .add({
+          'Units': readings,
+          'Time': selectedDate,
+          'UserId': userId,
+          'Day': selectedDate.weekday,
+          // 42
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
+
+  DateTime selectedDate = Values.selectedDatee;
 
   final _dateController = TextEditingController();
   DateTime _pickedDate;
@@ -109,8 +116,9 @@ class _HomePageState extends State<HomePage> {
     print("Value recevied");
     selectedDate = _pickedDate;
     readings = readingController.text;
-    Values.units = double.parse(readings);
-    lst.add(double.parse(readings));
+    //  Values.units = double.parse(readings);
+    addUser();
+    // _spendingList.add(double.parse(readings));
     dst.add(selectedDate);
     Navigator.pop(context);
     setState(() {});
@@ -188,7 +196,7 @@ class _HomePageState extends State<HomePage> {
   Widget add_reading(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
-        margin:const EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 20,
         ),
@@ -211,7 +219,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextFormField(
-                  decoration:const InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Reading',
                     prefixIcon: Icon(Icons.bolt),
                   ),
@@ -236,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 Container(
-                  margin:const EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 10,
                     bottom: 30,
                   ),
@@ -278,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                     const Spacer(),
                     FlatButton(
                       onPressed: addReadings,
-                      child:const Text(
+                      child: const Text(
                         " Add Readings ",
                         style: TextStyle(
                           color: Colors.white,
