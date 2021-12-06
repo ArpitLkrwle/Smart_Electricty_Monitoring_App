@@ -58,6 +58,7 @@ Card logss(String unitss, DateTime dst, String id) {
               IconButton(
                 onPressed: () {
                   deleteuser(id);
+            
                 },
                 icon: Icon(Icons.delete_outline),
                 iconSize: 20,
