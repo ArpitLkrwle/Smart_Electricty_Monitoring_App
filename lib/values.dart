@@ -24,6 +24,19 @@ class Values {
   // String get readings => _readings;
   // DateTime get selectedDatee=> _selectedDatee;
 
+static List<double> _spendingsList = List.generate(7, (index) => 0);
+   static void _generateWeeklyReport() {
+    if (_spendingsList.isNotEmpty) {
+      _spendingsList.clear();
+      _spendingsList = List.generate(7, (index) => 0);
+    }
+    for (int i = 0; i < Values.SelectedDocs.length; i++) {
+      _spendingsList[(Values.SelectedDocs[i]['Day'])] =
+          double.parse((Values.SelectedDocs[i]['Units']));
+    }
+    //summ = _spendingsList.sum;
+  }
+
 }
 
 // return StreamBuilder<QuerySnapshot>(

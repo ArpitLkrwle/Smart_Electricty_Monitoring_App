@@ -41,7 +41,7 @@ class _LogsState extends State<Logs> {
           snapshot.data.docs.map((DocumentSnapshot document) {
             Map a = document.data() as Map<String, dynamic>;
             storedocs.add(a);
-            Values.SelectedDocs.add(a);
+            Values.SelectedDocs = storedocs;
             a['id'] = document.id;
           }).toList();
           var size = MediaQuery.of(context).size;
@@ -54,6 +54,7 @@ class _LogsState extends State<Logs> {
             body: SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.centerLeft,
@@ -69,10 +70,16 @@ class _LogsState extends State<Logs> {
                     spacing: 50,
                     children: <Widget>[
                       if (storedocs.isEmpty) ...{
-                        Text(" No readings Received yet"),
+                        Center(
+                          child: Column(
+                            children: [
+                              Text(" No readings Received yet"),
+                            ],
+                          ),
+                        )
                       } else ...{
                         Container(
-                          height: 280,
+                          height: 300,
                           width: double.infinity,
                           child: GestureDetector(
                             onHorizontalDragEnd: (details) {
@@ -85,10 +92,11 @@ class _LogsState extends State<Logs> {
                               }
                             },
                             child: _showBarChart
-                                ? BarChartSample1()
-                                : WeekPieChart(),
+                                ? WeekPieChart()
+                                : BarChartSample1(),
                           ),
                         ),
+
                         // SizedBox(
                         //   height: 20,
                         // ),
