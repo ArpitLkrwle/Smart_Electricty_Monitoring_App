@@ -1,16 +1,7 @@
-# first_app
+# Smart Electricity Monitoring App
 
-A new Flutter project.
+* This app will be connected to your electricity meter and will monitor the power consumption 
 
-## Getting Started
+* Daily usage will be known to the user 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* As we will provide the value of electricity units, User can know the electricity bill any time of the month  
